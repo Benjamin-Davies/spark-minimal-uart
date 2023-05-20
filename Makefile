@@ -1,11 +1,11 @@
 SPIKE ?= spike
-CC ?= riscv64-unknown-elf-gcc
+RISCV_GCC ?= riscv64-unknown-elf-gcc
 
 test: main
 	$(SPIKE) main
 
 main: main.s
-	$(CC) -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles -Tlink.ld \
+	$(RISCV_GCC) -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles -Tlink.ld \
 		main.s -o main
 
 clean:
