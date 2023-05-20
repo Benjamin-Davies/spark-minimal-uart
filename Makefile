@@ -1,9 +1,11 @@
+SPIKE ?= spike
+CC ?= riscv64-unknown-elf-gcc
+
 test: main
-	~/src/riscv-isa-sim/build/spike main
+	$(SPIKE) main
 
 main: main.s
-	riscv64-unknown-elf-gcc	\
-		-static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles -Tlink.ld \
+	$(CC) -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles -Tlink.ld \
 		main.s -o main
 
 clean:
